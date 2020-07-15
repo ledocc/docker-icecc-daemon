@@ -17,6 +17,11 @@ then
    OPTS="${OPTS} -s ${ICECC_SCHEDULER_HOST}"
 fi
 
+if [ -n "${ICECC_MAX_JOBS}" ]
+then
+   OPTS="${OPTS} -m ${ICECC_MAX_JOBS}"
+fi
+
 
 LOG_DIR=/var/log/icecc
 mkdir -p ${LOG_DIR}
