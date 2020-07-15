@@ -2,9 +2,10 @@ FROM alpine:3.12
 
 ARG icecc_git_ref=1.3.1
 
-RUN apk --no-cache add libcap-ng lzo libstdc++ zstd libarchive && \
-    apk --no-cache add --virtual .bdeps alpine-sdk git automake autoconf libtool libcap-ng-dev lzo-dev zstd-dev libarchive-dev && \
-    git clone https://github.com/icecc/icecream -b ${icecc_git_ref} && \
+RUN apk --no-cache add libcap-ng lzo libstdc++ zstd libarchive
+RUN apk --no-cache add --virtual .bdeps alpine-sdk git automake autoconf libtool libcap-ng-dev lzo-dev zstd-dev libarchive-dev
+
+RUN git clone -b ${icecc_git_ref} --depth 1 -c advice.detachedHead=false https://github.com/icecc/icecream && \
     (cd icecream && autoreconf -i && ./configure --without-man && make && make install) && \
     rm -rf icecream && \
     apk del .bdeps
