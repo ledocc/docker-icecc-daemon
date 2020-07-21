@@ -25,3 +25,5 @@ start:
 stop:
 	docker stop -t 0 ${CONTAINER_NAME}
 	docker rm ${CONTAINER_NAME}
+
+restart: stop start
