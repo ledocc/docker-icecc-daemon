@@ -19,6 +19,7 @@ start:
 	--env ICECC_NETNAME=${NETNAME} \
 	-v /var/log/icecc:/var/log/icecc \
 	--name ${CONTAINER_NAME} \
+	--restart=unless-stopped \
 	${IMAGE_NAME}
 
 stop:
